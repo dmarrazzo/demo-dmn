@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="5.2.3.2" id="_90a17b17-c884-4fa9-ba59-7a47899d89b2" name="driving-eligibility-2" namespace="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" triso:logoChoice="None">
+  <semantic:itemDefinition isCollection="false" label="tPerson" name="tPerson">
+    <semantic:itemComponent id="_017a9e1d-6c97-4365-951d-f87dff35c1cf" isCollection="false" name="name">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_a8bf6cda-2de1-449d-9e33-db84b15325d9" isCollection="false" name="age">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_a6d16e07-1ee6-4a01-b4c3-2c83d93e094f" isCollection="false" name="country">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:decision id="_14660163-4961-4138-bcfb-11813ff53670" name="Driving Licence Eligibility" triso:displayName="Driving Licence Eligibility">
+    <semantic:variable id="_4792c260-b449-4bbd-835d-6bddeddc08b6" name="Driving Licence Eligibility" typeRef="feel:boolean"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874"/>
+    </semantic:informationRequirement>
+    <semantic:knowledgeRequirement>
+      <semantic:requiredKnowledge href="#_0473b276-4aa0-4894-8d49-ec3df9bb195c"/>
+    </semantic:knowledgeRequirement>
+    <semantic:literalExpression id="_45c24b7c-6d87-454e-9960-f87952cb90b4">
+      <semantic:text>Minimum age(Person)</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+  <semantic:inputData id="_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874" name="Person" triso:displayName="Person">
+    <semantic:variable id="_5bc6ceac-bfa1-45b5-bd6c-d201ca3768f8" name="Person" typeRef="tPerson"/>
+  </semantic:inputData>
+  <semantic:businessKnowledgeModel id="_0473b276-4aa0-4894-8d49-ec3df9bb195c" name="Minimum age" triso:displayName="Minimum age">
+    <semantic:encapsulatedLogic id="_216ae59f-dfee-40c1-9fae-c6456c593659">
+      <semantic:formalParameter id="_2d024058-0e8c-4f7e-92ca-4f2646cdf477" name="Person" typeRef="tPerson"/>
+      <semantic:context id="context__216ae59f-dfee-40c1-9fae-c6456c593659">
+        <semantic:contextEntry>
+          <semantic:variable id="_0f6a84e7-a26a-4162-8bab-3e0daab823b5" name="minimum age" typeRef="feel:boolean"/>
+          <semantic:decisionTable hitPolicy="FIRST" id="_271b2908-c76c-4bfd-af82-fbb69de0ee31" outputLabel="minimum age">
+            <semantic:input id="_5fc0e668-12ae-4ad0-8f67-1cb85e3a73ae">
+              <semantic:inputExpression typeRef="feel:number">
+                <semantic:text>Person.age</semantic:text>
+              </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_7c6b14d5-5c6a-4f81-980b-3c2008ec4857">
+              <semantic:inputExpression typeRef="feel:string">
+                <semantic:text>Person.country</semantic:text>
+              </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_2d72084c-09e9-4ba9-a7e0-72b140e640c6">
+              <semantic:defaultOutputEntry>
+                <semantic:text>false</semantic:text>
+              </semantic:defaultOutputEntry>
+            </semantic:output>
+            <semantic:rule id="_fdac5e9e-5953-4c1b-a84e-8b576835b006">
+              <semantic:inputEntry id="_7677c7bd-ca71-40c1-8a3f-a871e3818e78">
+                <semantic:text> &gt;= 16</semantic:text>
+              </semantic:inputEntry>
+              <semantic:inputEntry id="_6436d1e3-8501-4c70-98d5-428840d84b5b">
+                <semantic:text>"us"</semantic:text>
+              </semantic:inputEntry>
+              <semantic:outputEntry id="_4d187d15-3386-4a72-9787-e6ee85b71ba8">
+                <semantic:text>true</semantic:text>
+              </semantic:outputEntry>
+            </semantic:rule>
+            <semantic:rule id="_d0b25293-27da-4797-a33d-2d539dd2a4d4">
+              <semantic:inputEntry id="_56c20273-e464-4b15-b1f6-e308df6d2440">
+                <semantic:text>&gt;= 18</semantic:text>
+              </semantic:inputEntry>
+              <semantic:inputEntry expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_f4d4e748-5093-4ce7-85de-fd76719adbd9" triso:unparsed="true">
+                <semantic:text>-</semantic:text>
+              </semantic:inputEntry>
+              <semantic:outputEntry id="_621bd197-1537-46ee-8314-7b62660ecfbf">
+                <semantic:text>true</semantic:text>
+              </semantic:outputEntry>
+            </semantic:rule>
+          </semantic:decisionTable>
+        </semantic:contextEntry>
+        <semantic:contextEntry>
+          <semantic:literalExpression id="_88923ef9-fd11-4eec-be2f-27eee6f9ce6f">
+            <semantic:text>minimum age</semantic:text>
+          </semantic:literalExpression>
+        </semantic:contextEntry>
+      </semantic:context>
+    </semantic:encapsulatedLogic>
+    <semantic:variable id="_0823ded1-b416-4d27-8b4c-ab51f7b815f3" name="Minimum age" typeRef="feel:boolean"/>
+  </semantic:businessKnowledgeModel>
+</semantic:definitions>
