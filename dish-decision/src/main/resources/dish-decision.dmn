@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_15587d56-cedf-4cef-9f16-fe20b223021b" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="5.2.14.2" id="_15587d56-cedf-4cef-9f16-fe20b223021b" name="dish-decision" namespace="http://www.trisotech.com/definitions/_15587d56-cedf-4cef-9f16-fe20b223021b" triso:logoChoice="Default">
+  <semantic:extensionElements/>
+  <semantic:itemDefinition label="tSeason" name="tSeason">
+    <semantic:typeRef>feel:string</semantic:typeRef>
+    <semantic:allowedValues triso:constraintsType="enumeration">
+      <semantic:text>"Fall","Winter","Spring","Summer"</semantic:text>
+    </semantic:allowedValues>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="tGuests" name="tGuests">
+    <semantic:typeRef>feel:number</semantic:typeRef>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="tDish" name="tDish">
+    <semantic:typeRef>feel:string</semantic:typeRef>
+  </semantic:itemDefinition>
+  <semantic:decision id="_6aceedc5-4809-4a73-810c-aab05eb94f2d" name="Dish Decision">
+    <semantic:variable id="_899da7ed-04eb-4b5e-aeb1-5f1119b23484" name="Dish Decision" typeRef="tDish"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_d2ea8047-0a34-4942-91ff-e718ce5880c6"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_9d7010c2-4ec8-4ff7-998e-9bb65fb117a7"/>
+    </semantic:informationRequirement>
+    <semantic:decisionTable hitPolicy="UNIQUE" id="_90997060-896e-49a6-9ad4-b1bcc46a5846" outputLabel="Dish Decision">
+      <semantic:input id="_15f27d6b-9a5a-427d-baf6-a2163a0bf43c">
+        <semantic:inputExpression typeRef="tSeason">
+          <semantic:text>Season</semantic:text>
+        </semantic:inputExpression>
+        <semantic:inputValues triso:constraintsType="enumeration">
+          <semantic:text>"Fall","Winter","Spring","Summer"</semantic:text>
+        </semantic:inputValues>
+      </semantic:input>
+      <semantic:input id="_5527901a-1404-44a9-a50c-72b65eeffd00">
+        <semantic:inputExpression typeRef="tGuests">
+          <semantic:text>How many guests</semantic:text>
+        </semantic:inputExpression>
+      </semantic:input>
+      <semantic:output id="_634f46b6-bd3f-41e6-9956-2baea0c34f70"/>
+      <semantic:rule id="_5622957e-bc0c-492b-9ce6-2fe6405eeb20">
+        <semantic:inputEntry id="_57837258-4782-4674-ad8d-4bfb14d81317">
+          <semantic:text>"Fall"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_1d236568-bfa0-4dfb-8fcb-8062e279b4b7">
+          <semantic:text>&lt;= 8</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_379a2c77-b8f1-482b-b073-14e6f9130670">
+          <semantic:text>"Spareribs"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_a0e212d9-d632-4a39-bc28-db009afef98a">
+        <semantic:inputEntry id="_b599157e-0c41-42ce-94af-abd655706169">
+          <semantic:text>"Winter"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_8beed46d-770e-4df7-bfd6-131fc3dd0aba">
+          <semantic:text>&lt;= 8</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_96c195cc-bd29-414c-95ec-2d00d46e037f">
+          <semantic:text>"Roastbeef"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_5c48feca-ef56-437a-9bfe-cc3008e456b6">
+        <semantic:inputEntry id="_25d6b3c0-dad8-4798-ba6b-aabaf1798ca2">
+          <semantic:text>"Spring"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_14848008-db78-4405-b145-04b07f762a87">
+          <semantic:text>&lt;= 4</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_3e174a64-f5c9-448e-a52f-324a08ca5c23">
+          <semantic:text>"Dry Aged Gourmet Steak"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_ccdcf5d1-75a6-447b-8285-eeaad8440945">
+        <semantic:description>Save money</semantic:description>
+        <semantic:inputEntry id="_96c60ba8-b761-476e-99f9-cbb02657f47b">
+          <semantic:text>"Spring"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_c1f1c2e7-1d76-48bb-a9f7-f53739d77a57">
+          <semantic:text>[5..8]</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_6f3883a9-113f-4e16-96dd-361f2e8c7917">
+          <semantic:text>"Steak"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_a73cdf14-0d81-4e2f-bbc7-ed8b92cc5c4d">
+        <semantic:description>Less effort</semantic:description>
+        <semantic:inputEntry id="_b4ef3b99-e442-407c-a201-fb06e51c562d">
+          <semantic:text>"Fall", "Winter", "Spring"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_5a417624-b9ac-4ea8-acf0-ceafaa52250b">
+          <semantic:text>&gt; 8</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_fb97fd8c-798b-4a98-80c7-5853d8151127">
+          <semantic:text>"Stew"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+      <semantic:rule id="_d7e6f6f5-b640-42f3-88a5-886b03ffc34c">
+        <semantic:description>Hey, why not!?</semantic:description>
+        <semantic:inputEntry id="_9a97da0a-37ef-44a3-a891-7d2e0ed88f1a">
+          <semantic:text>"Summer"</semantic:text>
+        </semantic:inputEntry>
+        <semantic:inputEntry id="_38efbdb0-debc-4dc3-8ef0-4c973e1c6124">
+          <semantic:text>-</semantic:text>
+        </semantic:inputEntry>
+        <semantic:outputEntry id="_c45c1448-1ac5-464b-afd4-e896a50376c7">
+          <semantic:text>"Light Salad and a nice Steak"</semantic:text>
+        </semantic:outputEntry>
+      </semantic:rule>
+    </semantic:decisionTable>
+  </semantic:decision>
+  <semantic:inputData id="_d2ea8047-0a34-4942-91ff-e718ce5880c6" name="Season">
+    <semantic:variable id="_14c791d2-1029-444b-944e-3c12e3995b56" name="Season" typeRef="tSeason"/>
+  </semantic:inputData>
+  <semantic:inputData id="_9d7010c2-4ec8-4ff7-998e-9bb65fb117a7" name="How many guests">
+    <semantic:variable id="_269694a2-22bc-4c17-a1be-82f488cdff16" name="How many guests" typeRef="tGuests"/>
+  </semantic:inputData>
+</semantic:definitions>
