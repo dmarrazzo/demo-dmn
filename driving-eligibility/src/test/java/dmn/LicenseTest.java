@@ -13,6 +13,8 @@ import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
 
+import model.Person;
+
 public class LicenseTest {
 	private DMNRuntime dmnRuntime;
 	private DMNModel dmnModel;
@@ -31,19 +33,16 @@ public class LicenseTest {
 
 	
 	@Test
-	public void testNotUS() {
-		Map<String, Object> person = new HashMap<>();
-		
-		person.put("name", "Donato");
-		person.put("age", 17);
-		person.put("country", "italy");
+	public void testNotUS() {		
+		Person person = new Person("Donato", 17, "italy");
+
 		dmnContext.set("Person", person);
 
 		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
 		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.FALSE);
 
-		person.replace("age", 18);
+		person.setAge(18);
 		dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
@@ -52,18 +51,14 @@ public class LicenseTest {
 
 	@Test
 	public void testUS() {
-		Map<String, Object> person = new HashMap<>();
-		
-		person.put("name", "Jim");
-		person.put("age", 15);
-		person.put("country", "us");
+		Person person = new Person("Jim", 15, "us");
 		dmnContext.set("Person", person);
 
 		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);
 		Assert.assertEquals(dmnResult.getDecisionResults().get(0).getResult(), Boolean.FALSE);
 
-		person.replace("age", 16);
+		person.setAge(16);
 		dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
 
 		Assert.assertEquals(dmnResult.getDecisionResults().size(), 1);

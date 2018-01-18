@@ -1,7 +1,5 @@
 package dmn;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.kie.api.KieServices;
@@ -12,6 +10,8 @@ import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
 import org.kie.dmn.api.core.DMNRuntime;
 import org.kie.dmn.api.core.ast.InputDataNode;
+
+import model.Person;
 
 public class DMNRunner {
 
@@ -31,11 +31,7 @@ public class DMNRunner {
 			
 			DMNContext dmnContext = dmnRuntime.newContext();
 			
-			Map<String, Object> person = new HashMap<>();
-			
-			person.put("name", "Donato");
-			person.put("age", 17);
-			person.put("country", "italy");
+			Person person = new Person("ok", 19, "italy");
 			dmnContext.set("Person", person);
 	
 			DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);

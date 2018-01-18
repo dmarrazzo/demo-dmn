@@ -1,6 +1,6 @@
 # DMN samples
 
-DMN samples running in [Drools v7.x](drools.org).
+DMN samples running in [Drools v7.5](drools.org).
 
 * driving-eligibily sample used in this blog article: http://www.opensourcerers.org/capture-your-decisions-with-dmn/
 
