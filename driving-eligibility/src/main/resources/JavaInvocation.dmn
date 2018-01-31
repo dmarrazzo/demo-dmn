@@ -21,7 +21,7 @@
         <semantic:contextEntry>
           <semantic:variable id="_b912a898-9794-499f-b428-474a6cc939e7" name="method signature" typeRef="feel:string"/>
           <semantic:literalExpression id="_11351e38-299e-4a3a-8668-27bccffc7f89">
-            <semantic:text>"simple(String)"</semantic:text>
+            <semantic:text>"simple(java.lang.String)"</semantic:text>
           </semantic:literalExpression>
         </semantic:contextEntry>
       </semantic:context>
