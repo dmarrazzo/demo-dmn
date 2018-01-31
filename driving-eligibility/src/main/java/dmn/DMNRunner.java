@@ -20,25 +20,48 @@ public class DMNRunner {
 	
 			KieContainer kieContainer = kieServices.getKieClasspathContainer();
 			DMNRuntime dmnRuntime = kieContainer.newKieSession().getKieRuntime( DMNRuntime.class );
-			DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2", "driving-eligibility");
-			
-			// <<< optional check
-			Set<InputDataNode> inputs = dmnModel.getInputs();
-			for (InputDataNode inputDataNode : inputs) {
-				System.out.println(inputDataNode.getType());
-			}
-			//  optional check >>>
-			
-			DMNContext dmnContext = dmnRuntime.newContext();
-			
-			Person person = new Person("ok", 19, "italy");
-			dmnContext.set("Person", person);
-	
-			DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+			DMNResult dmnResult = testJavaInvocation(dmnRuntime);
 	
 			for (DMNDecisionResult dr : dmnResult.getDecisionResults()) {
 				System.out.println("Decision '" + dr.getDecisionName() + "' : " + dr.getResult());
 			}
+	}
+
+	public static DMNResult testDrivingEligibility(DMNRuntime dmnRuntime) {
+		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2", "driving-eligibility");
+		
+		// <<< optional check
+		Set<InputDataNode> inputs = dmnModel.getInputs();
+		for (InputDataNode inputDataNode : inputs) {
+			System.out.println(inputDataNode.getType());
+		}
+		//  optional check >>>
+		
+		DMNContext dmnContext = dmnRuntime.newContext();
+		
+		Person person = new Person("ok", 19, "italy");
+		dmnContext.set("Person", person);
+
+		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+		return dmnResult;
+	}
+
+	public static DMNResult testJavaInvocation(DMNRuntime dmnRuntime) {
+		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_0d3400b8-5b9b-4752-8e0b-bd00e61e0dfc", "JavaInvocation");
+		
+		// <<< optional check
+		Set<InputDataNode> inputs = dmnModel.getInputs();
+		for (InputDataNode inputDataNode : inputs) {
+			System.out.println(inputDataNode.getType());
+		}
+		//  optional check >>>
+		
+		DMNContext dmnContext = dmnRuntime.newContext();
+		
+		dmnContext.set("Input", "input");
+
+		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
+		return dmnResult;
 	}
 
 }
