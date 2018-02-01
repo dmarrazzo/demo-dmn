@@ -47,7 +47,7 @@ public class DMNRunner {
 	}
 
 	public static DMNResult testJavaInvocation(DMNRuntime dmnRuntime) {
-		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_0d3400b8-5b9b-4752-8e0b-bd00e61e0dfc", "JavaInvocation");
+		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_392573d3-b0fb-4118-b40e-b8da2aba9c23", "JavaInvocation");
 		
 		// <<< optional check
 		Set<InputDataNode> inputs = dmnModel.getInputs();

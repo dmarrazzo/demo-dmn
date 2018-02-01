@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_0d3400b8-5b9b-4752-8e0b-bd00e61e0dfc" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.0" id="_0d3400b8-5b9b-4752-8e0b-bd00e61e0dfc" name="JavaInvocation" namespace="http://www.trisotech.com/definitions/_0d3400b8-5b9b-4752-8e0b-bd00e61e0dfc" triso:logoChoice="Default">
-  <semantic:extensionElements/>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_392573d3-b0fb-4118-b40e-b8da2aba9c23" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.0" id="_392573d3-b0fb-4118-b40e-b8da2aba9c23" name="JavaInvocation" namespace="http://www.trisotech.com/definitions/_392573d3-b0fb-4118-b40e-b8da2aba9c23" triso:logoChoice="Default">
+  <semantic:extensionElements>
+    <triso:dmnInputs>[{"name":"Input","id":"_a8b35b9a-fd3c-4af6-9bf8-fad21b8ce56e","type":"string"}]</triso:dmnInputs>
+  </semantic:extensionElements>
   <semantic:inputData displayName="Input" id="_a8b35b9a-fd3c-4af6-9bf8-fad21b8ce56e" name="Input">
     <semantic:variable id="_6e9b53b4-4e02-430b-b7c3-47ad854a8e2a" name="Input" typeRef="feel:string"/>
   </semantic:inputData>
-  <semantic:decision displayName="Java code" id="_96bde744-29b4-4352-af1f-ae9f73f7c375" name="Java code">
-    <semantic:variable id="_749153cc-126d-44c4-8add-f938862c6eae" name="Java code"/>
+  <semantic:decision displayName="What the result of this Java" id="_96bde744-29b4-4352-af1f-ae9f73f7c375" name="What the result of this Java">
+    <semantic:variable id="_749153cc-126d-44c4-8add-f938862c6eae" name="What the result of this Java" typeRef="feel:string"/>
     <semantic:informationRequirement>
       <semantic:requiredInput href="#_a8b35b9a-fd3c-4af6-9bf8-fad21b8ce56e"/>
     </semantic:informationRequirement>
-    <semantic:functionDefinition xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="J" id="_1fc0c4fd-a102-4c21-b284-b59af69ac941">
-      <semantic:formalParameter id="undefined" name="Input" typeRef="feel:string"/>
-      <semantic:context>
-        <semantic:contextEntry>
-          <semantic:variable id="_33f0f1e7-7952-4633-a6cb-3164ed4c97b8" name="class" typeRef="feel:string"/>
-          <semantic:literalExpression id="_f939790a-b0bc-4ec6-9bac-6f87a5eceb5c">
-            <semantic:text>"service.Test"</semantic:text>
-          </semantic:literalExpression>
-        </semantic:contextEntry>
-        <semantic:contextEntry>
-          <semantic:variable id="_b912a898-9794-499f-b428-474a6cc939e7" name="method signature" typeRef="feel:string"/>
-          <semantic:literalExpression id="_11351e38-299e-4a3a-8668-27bccffc7f89">
-            <semantic:text>"simple(java.lang.String)"</semantic:text>
-          </semantic:literalExpression>
-        </semantic:contextEntry>
-      </semantic:context>
-    </semantic:functionDefinition>
+    <semantic:context id="_c3ace36f-dbc3-4140-82dc-be905c80ecff">
+      <semantic:contextEntry>
+        <semantic:variable id="_ae37bc38-266c-4e3c-9c66-b516430fda2f" name="my func" typeRef="feel:string"/>
+        <semantic:functionDefinition xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="J" id="_edb2e362-2a80-4f33-b869-d88c474663a3">
+          <semantic:formalParameter id="_b7dfd021-fdc5-46a1-adb4-b17a6191738a" name="input" typeRef="feel:string"/>
+          <semantic:context>
+            <semantic:contextEntry>
+              <semantic:variable id="_a209105d-3cb6-41e0-bf84-5ffd69596543" name="class" typeRef="feel:string"/>
+              <semantic:literalExpression id="_17b5c615-4ce5-45e7-9b3b-9f304ac013c2">
+                <semantic:text>"service.Test"</semantic:text>
+              </semantic:literalExpression>
+            </semantic:contextEntry>
+            <semantic:contextEntry>
+              <semantic:variable id="_eab7f5b5-fbb1-4858-99e4-3fd8cc4633f3" name="method signature" typeRef="feel:string"/>
+              <semantic:literalExpression id="_cb245970-f1a7-4b2b-8778-9c820fa3ebfe">
+                <semantic:text>"simple(java.lang.String)"</semantic:text>
+              </semantic:literalExpression>
+            </semantic:contextEntry>
+          </semantic:context>
+        </semantic:functionDefinition>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:literalExpression id="_b63c5559-ed8d-4f95-8254-bd36e41e2742">
+          <semantic:text>my func(Input)</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+    </semantic:context>
   </semantic:decision>
 </semantic:definitions>
