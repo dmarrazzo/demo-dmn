@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="5.2.3.2" id="_90a17b17-c884-4fa9-ba59-7a47899d89b2" name="driving-eligibility-2" namespace="http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2" triso:logoChoice="None">
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/definitions/_acfd1ef7-d9d6-49e5-b805-2c4423048a16" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.1" id="_acfd1ef7-d9d6-49e5-b805-2c4423048a16" name="driving-eligibility-2" namespace="http://www.trisotech.com/definitions/_acfd1ef7-d9d6-49e5-b805-2c4423048a16" triso:logoChoice="None">
+  <semantic:extensionElements/>
   <semantic:itemDefinition isCollection="false" label="tPerson" name="tPerson">
     <semantic:itemComponent id="_017a9e1d-6c97-4365-951d-f87dff35c1cf" isCollection="false" name="name">
       <semantic:typeRef>feel:string</semantic:typeRef>
@@ -11,7 +12,7 @@
       <semantic:typeRef>feel:string</semantic:typeRef>
     </semantic:itemComponent>
   </semantic:itemDefinition>
-  <semantic:decision id="_14660163-4961-4138-bcfb-11813ff53670" name="Driving Licence Eligibility" triso:displayName="Driving Licence Eligibility">
+  <semantic:decision displayName="Driving Licence Eligibility" id="_14660163-4961-4138-bcfb-11813ff53670" name="Driving Licence Eligibility">
     <semantic:variable id="_4792c260-b449-4bbd-835d-6bddeddc08b6" name="Driving Licence Eligibility" typeRef="feel:boolean"/>
     <semantic:informationRequirement>
       <semantic:requiredInput href="#_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874"/>
@@ -19,17 +20,20 @@
     <semantic:knowledgeRequirement>
       <semantic:requiredKnowledge href="#_0473b276-4aa0-4894-8d49-ec3df9bb195c"/>
     </semantic:knowledgeRequirement>
+    <semantic:knowledgeRequirement>
+      <semantic:requiredKnowledge href="#_73905a14-42dc-4e6f-9c94-67ca727cc9db"/>
+    </semantic:knowledgeRequirement>
     <semantic:literalExpression id="_45c24b7c-6d87-454e-9960-f87952cb90b4">
-      <semantic:text>Minimum age(Person)</semantic:text>
+      <semantic:text>Minimum age(Person) and Exam passed(Person)</semantic:text>
     </semantic:literalExpression>
   </semantic:decision>
-  <semantic:inputData id="_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874" name="Person" triso:displayName="Person">
+  <semantic:inputData displayName="Person" id="_9a9eb364-6bd1-4c2a-94d3-4a315d4c3874" name="Person">
     <semantic:variable id="_5bc6ceac-bfa1-45b5-bd6c-d201ca3768f8" name="Person" typeRef="tPerson"/>
   </semantic:inputData>
-  <semantic:businessKnowledgeModel id="_0473b276-4aa0-4894-8d49-ec3df9bb195c" name="Minimum age" triso:displayName="Minimum age">
-    <semantic:encapsulatedLogic id="_216ae59f-dfee-40c1-9fae-c6456c593659">
+  <semantic:businessKnowledgeModel displayName="Minimum age" id="_0473b276-4aa0-4894-8d49-ec3df9bb195c" name="Minimum age">
+    <semantic:encapsulatedLogic id="context__216ae59f-dfee-40c1-9fae-c6456c593659">
       <semantic:formalParameter id="_2d024058-0e8c-4f7e-92ca-4f2646cdf477" name="Person" typeRef="tPerson"/>
-      <semantic:context id="context__216ae59f-dfee-40c1-9fae-c6456c593659">
+      <semantic:context id="context_context__216ae59f-dfee-40c1-9fae-c6456c593659">
         <semantic:contextEntry>
           <semantic:variable id="_0f6a84e7-a26a-4162-8bab-3e0daab823b5" name="minimum age" typeRef="feel:boolean"/>
           <semantic:decisionTable hitPolicy="FIRST" id="_271b2908-c76c-4bfd-af82-fbb69de0ee31" outputLabel="minimum age">
@@ -80,5 +84,25 @@
       </semantic:context>
     </semantic:encapsulatedLogic>
     <semantic:variable id="_0823ded1-b416-4d27-8b4c-ab51f7b815f3" name="Minimum age" typeRef="feel:boolean"/>
+  </semantic:businessKnowledgeModel>
+  <semantic:businessKnowledgeModel displayName="Exam passed" id="_73905a14-42dc-4e6f-9c94-67ca727cc9db" name="Exam passed">
+    <semantic:encapsulatedLogic xmlns:drools="http://www.drools.org/kie/dmn/1.1" drools:kind="J" id="_a4359839-b994-473d-929c-532b776436aa">
+      <semantic:formalParameter id="_246eafac-c3c0-4fbf-9dbd-523598935486" name="person" typeRef="tPerson"/>
+      <semantic:context>
+        <semantic:contextEntry>
+          <semantic:variable id="_695d6278-2432-4ff6-a138-0ee077bceeca" name="class" typeRef="feel:string"/>
+          <semantic:literalExpression id="_1d27a33e-54d1-4817-8cac-6f762598b3e8">
+            <semantic:text>"service.Exam"</semantic:text>
+          </semantic:literalExpression>
+        </semantic:contextEntry>
+        <semantic:contextEntry>
+          <semantic:variable id="_087165b3-754b-46bd-b0d4-c3e562ccc75f" name="method signature" typeRef="feel:string"/>
+          <semantic:literalExpression id="_8dd68b53-2671-4ad3-bb39-985efce7e0dd">
+            <semantic:text>"isPassed(model.Person)"</semantic:text>
+          </semantic:literalExpression>
+        </semantic:contextEntry>
+      </semantic:context>
+    </semantic:encapsulatedLogic>
+    <semantic:variable id="_bc0a052c-2f46-44ed-be2d-cc6a7170418e" name="Exam passed" typeRef="feel:boolean"/>
   </semantic:businessKnowledgeModel>
 </semantic:definitions>

@@ -20,7 +20,7 @@ public class DMNRunner {
 	
 			KieContainer kieContainer = kieServices.getKieClasspathContainer();
 			DMNRuntime dmnRuntime = kieContainer.newKieSession().getKieRuntime( DMNRuntime.class );
-			DMNResult dmnResult = testJavaInvocation(dmnRuntime);
+			DMNResult dmnResult = testDrivingEligibility(dmnRuntime);
 	
 			for (DMNDecisionResult dr : dmnResult.getDecisionResults()) {
 				System.out.println("Decision '" + dr.getDecisionName() + "' : " + dr.getResult());
@@ -28,7 +28,7 @@ public class DMNRunner {
 	}
 
 	public static DMNResult testDrivingEligibility(DMNRuntime dmnRuntime) {
-		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_90a17b17-c884-4fa9-ba59-7a47899d89b2", "driving-eligibility");
+		DMNModel dmnModel = dmnRuntime.getModel("http://www.trisotech.com/definitions/_acfd1ef7-d9d6-49e5-b805-2c4423048a16", "driving-eligibility-2");
 		
 		// <<< optional check
 		Set<InputDataNode> inputs = dmnModel.getInputs();
@@ -39,7 +39,7 @@ public class DMNRunner {
 		
 		DMNContext dmnContext = dmnRuntime.newContext();
 		
-		Person person = new Person("ok", 19, "italy");
+		Person person = new Person("Tony", 19, "italy");
 		dmnContext.set("Person", person);
 
 		DMNResult dmnResult = dmnRuntime.evaluateAll(dmnModel, dmnContext);
