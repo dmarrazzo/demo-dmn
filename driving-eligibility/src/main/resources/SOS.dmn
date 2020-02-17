@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/dmn/definitions/_a557bfac-f9f7-41b9-a733-070b3d8f1d38" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.5.1" id="_a557bfac-f9f7-41b9-a733-070b3d8f1d38" name="SOS" namespace="http://www.trisotech.com/dmn/definitions/_a557bfac-f9f7-41b9-a733-070b3d8f1d38" triso:logoChoice="Default">
+  <semantic:extensionElements>
+    <triso:dmnInputs>[{"name":"HealthFact","id":"_601df59c-b080-42fa-894e-41b5ade1e88d","type":"complex","children":[{"name":"id","id":"_601df59c-b080-42fa-894e-41b5ade1e88d_2fb1158e-a0b3-4c5b-8259-b1cdd75ebd05","type":"string"},{"name":"measure","id":"_601df59c-b080-42fa-894e-41b5ade1e88d_c95aba85-53c6-4944-97e0-c03fd587f75b","isCollection":true,"type":"complex","children":[{"name":"id","id":"_601df59c-b080-42fa-894e-41b5ade1e88d_c95aba85-53c6-4944-97e0-c03fd587f75b_afd1782a-3fa4-4791-9b41-3afa345455f8","type":"string"},{"name":"value","id":"_601df59c-b080-42fa-894e-41b5ade1e88d_c95aba85-53c6-4944-97e0-c03fd587f75b_bb63acf7-5159-42b1-9630-6b4e5256b383","type":"number"}]}]}]</triso:dmnInputs>
+  </semantic:extensionElements>
+  <semantic:itemDefinition label="tHealthFact" name="tHealthFact">
+    <semantic:itemComponent id="_2fb1158e-a0b3-4c5b-8259-b1cdd75ebd05" name="id">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_c95aba85-53c6-4944-97e0-c03fd587f75b" isCollection="true" name="measure">
+      <semantic:typeRef>tMeasure</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="tQuestion" name="tQuestion">
+    <semantic:itemComponent id="_039fd4b4-c4bb-4682-9441-afc67a36f4d7" name="id">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_233ac911-09bc-4e3c-8995-c2ff8b6ec5ce" name="answerT">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition label="tMeasure" name="tMeasure">
+    <semantic:itemComponent id="_afd1782a-3fa4-4791-9b41-3afa345455f8" name="id">
+      <semantic:typeRef>feel:string</semantic:typeRef>
+    </semantic:itemComponent>
+    <semantic:itemComponent id="_bb63acf7-5159-42b1-9630-6b4e5256b383" name="value">
+      <semantic:typeRef>feel:number</semantic:typeRef>
+    </semantic:itemComponent>
+  </semantic:itemDefinition>
+  <semantic:itemDefinition isCollection="true" label="tMeasures" name="tMeasures">
+    <semantic:typeRef>tMeasure</semantic:typeRef>
+  </semantic:itemDefinition>
+  <semantic:decision id="_f0d38c01-5913-4885-a117-c9619c247dba" name="Pressure DT">
+    <semantic:variable id="_e2c13707-01b9-4005-9520-0e75cde36ab2" name="Pressure DT"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_601df59c-b080-42fa-894e-41b5ade1e88d"/>
+    </semantic:informationRequirement>
+    <semantic:knowledgeRequirement>
+      <semantic:requiredKnowledge href="#_64d76eef-fda8-48ed-ab2d-f81669ab6388"/>
+    </semantic:knowledgeRequirement>
+    <semantic:context id="_d24d895b-3001-4c64-889b-255e39b45192">
+      <semantic:contextEntry>
+        <semantic:variable id="_a7b8979a-917e-4c84-b121-70fa7ff4ecdb" name="measures" typeRef="tMeasures"/>
+        <semantic:literalExpression expressionLanguage="http://www.omg.org/spec/FEEL/20140401" id="_f52b7c25-f132-42a6-b999-dbff34d0b841" triso:unparsed="false">
+          <semantic:text>flatten(HealthFact[id = "blood-pressure"].measure)</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_b7fc0b82-9840-4be8-8079-d605fc9bcd2a" name="questions"/>
+        <semantic:literalExpression id="_0b16bd47-d2d2-43b9-8b26-940170a2c676">
+          <semantic:text>for m in measures return measure DT(m)</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:literalExpression id="_c132109c-3fb7-4574-8577-4ebf64d14d06">
+          <semantic:text>questions</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+    </semantic:context>
+  </semantic:decision>
+  <semantic:inputData id="_601df59c-b080-42fa-894e-41b5ade1e88d" name="HealthFact">
+    <semantic:variable id="_ae233bbf-60ce-4534-a25a-b9f2c387aad6" name="HealthFact" typeRef="tHealthFact"/>
+  </semantic:inputData>
+  <semantic:decision id="_afb87511-8933-4d70-9235-db87547c922f" name="Pressure LE">
+    <semantic:variable id="_04cf45fa-cd74-4fe1-920e-cc1d0e337f30" name="Pressure LE"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_601df59c-b080-42fa-894e-41b5ade1e88d"/>
+    </semantic:informationRequirement>
+    <semantic:context id="_f12eccba-3c8c-44f4-a352-17d078297912">
+      <semantic:contextEntry>
+        <semantic:variable id="_086357bb-c826-42b4-90a6-13a72b1c61d7" name="blood pressure" typeRef="tHealthFact"/>
+        <semantic:literalExpression id="_72439bcd-cb37-4718-9f90-b4b069a70f21">
+          <semantic:text> if HealthFact.id = "blood-pressure" then HealthFact else null</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_a5439323-1e89-4c41-9356-3dcacd313b19" name="high pressure"/>
+        <semantic:literalExpression id="_f336ea17-09e1-445c-bccd-7b4a5cb53c3f">
+          <semantic:text>count(blood pressure.measure[ id = "systolic" and value &gt; 150 ]) = 1</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:variable id="_7184b1c8-fd51-42b5-a9bd-77cc8ca4cc2b" name="therapy question" typeRef="tQuestion"/>
+        <semantic:context id="_70523682-4e5a-486b-91ab-98b06962f780">
+          <semantic:contextEntry>
+            <semantic:variable id="undefined" name="id" typeRef="feel:string"/>
+            <semantic:literalExpression id="_7bd83f58-21eb-4eca-9f0b-d9f3bd3e90e4">
+              <semantic:text>"therapy-in-place"</semantic:text>
+            </semantic:literalExpression>
+          </semantic:contextEntry>
+          <semantic:contextEntry>
+            <semantic:variable id="undefined" name="answerT" typeRef="feel:string"/>
+            <semantic:literalExpression id="_fa8d7a62-ea98-446d-9379-ce6b407ec903">
+              <semantic:text>"Y/N"</semantic:text>
+            </semantic:literalExpression>
+          </semantic:contextEntry>
+        </semantic:context>
+      </semantic:contextEntry>
+      <semantic:contextEntry>
+        <semantic:literalExpression id="_b6205d92-bae6-4301-9b57-fde278cf3b97">
+          <semantic:text>if high pressure then therapy question else null</semantic:text>
+        </semantic:literalExpression>
+      </semantic:contextEntry>
+    </semantic:context>
+  </semantic:decision>
+  <semantic:businessKnowledgeModel id="_64d76eef-fda8-48ed-ab2d-f81669ab6388" name="measure DT">
+    <semantic:encapsulatedLogic>
+      <semantic:formalParameter name="m" typeRef="tMeasure"/>
+      <semantic:decisionTable hitPolicy="UNIQUE" id="_aeb35436-5528-4892-9463-b3d3c444773d" outputLabel="measure DT">
+        <semantic:input id="_6f2e3ea8-6976-41ff-ab4b-1563cc98ec12">
+          <semantic:inputExpression typeRef="feel:string">
+            <semantic:text>m.id</semantic:text>
+          </semantic:inputExpression>
+        </semantic:input>
+        <semantic:input id="_030f3df3-c0fe-4273-91d6-751fdcf20a9c">
+          <semantic:inputExpression typeRef="feel:number">
+            <semantic:text>m.value</semantic:text>
+          </semantic:inputExpression>
+        </semantic:input>
+        <semantic:output id="_2c27fc87-4b99-49c2-87ef-c4c9b9cb75f5" name="id" typeRef="feel:string"/>
+        <semantic:output id="_aa796c87-f59d-4172-9e2e-6725906abbd2" name="answerT" typeRef="feel:string"/>
+        <semantic:rule id="_b49308e8-efc3-44c9-89b1-ef696439e1d1">
+          <semantic:inputEntry id="_804dc7df-0884-4a50-a0a7-e5ca4c704f5c">
+            <semantic:text>"systolic"</semantic:text>
+          </semantic:inputEntry>
+          <semantic:inputEntry id="_ab6d944b-6276-40a2-bffe-ce9b966021d6">
+            <semantic:text>&gt;150</semantic:text>
+          </semantic:inputEntry>
+          <semantic:outputEntry id="_e363d4e7-71d8-4a87-a9cd-8ef3a47ac102">
+            <semantic:text>"therapy-in-place"</semantic:text>
+          </semantic:outputEntry>
+          <semantic:outputEntry id="_1c668c08-8785-4865-b0ca-ac59abcd713c">
+            <semantic:text>"Y/N"</semantic:text>
+          </semantic:outputEntry>
+        </semantic:rule>
+      </semantic:decisionTable>
+    </semantic:encapsulatedLogic>
+    <semantic:variable id="_cf175e53-1980-49b7-ad62-6628fc6d87a1" name="measure DT" typeRef="tQuestion"/>
+  </semantic:businessKnowledgeModel>
+</semantic:definitions>

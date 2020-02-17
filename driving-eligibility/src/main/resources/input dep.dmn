@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns="http://www.trisotech.com/dmn/definitions/_0e21f378-8331-477f-b1b5-9a616404a3bd" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" exporter="DMN Modeler" exporterVersion="6.0.4.2" id="_0e21f378-8331-477f-b1b5-9a616404a3bd" name="input dep" namespace="http://www.trisotech.com/dmn/definitions/_0e21f378-8331-477f-b1b5-9a616404a3bd" triso:logoChoice="Default">
+  <semantic:extensionElements>
+    <triso:dmnInputs>[{"name":"in1","id":"_51659216-25b3-4461-ace6-c445c8fa807e","type":"string"},{"name":"in2","id":"_48c7ba79-3825-486f-bb75-b8a28807fe33","type":"string"}]</triso:dmnInputs>
+    <drools:decisionServices xmlns:drools="http://www.drools.org/kie/dmn/1.1"/>
+  </semantic:extensionElements>
+  <semantic:decision id="_76f46d10-63b2-454e-943a-f8aeb71d6c76" name="d1">
+    <semantic:variable id="_2c3b43d5-9ead-4fae-93be-244647042d48" name="d1"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_51659216-25b3-4461-ace6-c445c8fa807e"/>
+    </semantic:informationRequirement>
+    <semantic:literalExpression id="_862a3a34-282a-49be-9521-35a54bf9009d">
+      <semantic:text>in1</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+  <semantic:inputData id="_51659216-25b3-4461-ace6-c445c8fa807e" name="in1">
+    <semantic:variable id="_06ac8363-1239-402b-bd99-8997d0d3f2b3" name="in1" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:inputData id="_48c7ba79-3825-486f-bb75-b8a28807fe33" name="in2">
+    <semantic:variable id="_6c83c1fd-0974-42ed-b0cf-b9f53bcfe13d" name="in2" typeRef="feel:string"/>
+  </semantic:inputData>
+  <semantic:decision id="_7d72b44b-2940-4801-9437-a453d856941f" name="d2">
+    <semantic:variable id="_633a8601-8e84-48c5-a404-cc1acd70edbc" name="d2"/>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_48c7ba79-3825-486f-bb75-b8a28807fe33"/>
+    </semantic:informationRequirement>
+    <semantic:informationRequirement>
+      <semantic:requiredInput href="#_51659216-25b3-4461-ace6-c445c8fa807e"/>
+    </semantic:informationRequirement>
+    <semantic:literalExpression id="_516cd891-f093-43c0-bed4-fa03f2ee8e2f">
+      <semantic:text>in2</semantic:text>
+    </semantic:literalExpression>
+  </semantic:decision>
+</semantic:definitions>
